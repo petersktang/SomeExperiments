@@ -62,6 +62,38 @@ extension ViewController {
         let lapChangess = Observable.changeset(from: realm.objects(Timer.self).first!.laps).share()
 
         //Something of the below type as the cv.rx.items
-        //RxCollectionViewDataSourceType (<Element>) thingie.
+        lapChangess.bind(to: cv.rx.items(dataSource: SomeRxCollectionDataSource<String>()))
     }
+}
+
+public class SomeRxCollectionDataSource<Section>: NSObject, RxCollectionViewDataSourceType & UICollectionViewDataSource {
+    public typealias Element = [RxSectionModel<Section>]
+    
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 0
+    }
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
+    }
+    public func collectionView(_ collectionView: UICollectionView, observedEvent: Event<[RxSectionModel<Section>]>) {
+        print("Some Stupid Event hitting my CollcetionView!")
+    }
+    override init() {
+        super.init()
+    }
+}
+
+extension Reactive where Base : UICollectionView {
+    public func items<DataSource: RxCollectionViewDataSourceType & UICollectionViewDataSource,
+        O: ObservableType>
+        (dataSource: DataSource)
+        -> (_ source: O)
+        -> Disposable
+        // where DataSource.Element == O.E
+    {
+            return Disposables.create {
+                
+            }
+    }
+
 }
