@@ -84,16 +84,13 @@ public class SomeRxCollectionDataSource<Section>: NSObject, RxCollectionViewData
 }
 
 extension Reactive where Base : UICollectionView {
-    public func items<DataSource: RxCollectionViewDataSourceType & UICollectionViewDataSource,
-        O: ObservableType>
+    public func items<DataSource: RxCollectionViewDataSourceType & UICollectionViewDataSource, O: ObservableType>
         (dataSource: DataSource)
         -> (_ source: O)
         -> Disposable
         // where DataSource.Element == O.E
     {
             return Disposables.create {
-                
             }
     }
-
 }
