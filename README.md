@@ -21,3 +21,6 @@ https://www.raywenderlich.com/5743-dynamic-features-in-swift
 ## Books
 Handbook of Graph Drawing and Visualization, edited by Roberto Tamassia
 e.g. algorithms testing possiblity of drawing graphs without intersections
+
+## Interesting Graphics Pattern
+https://github.com/windstormeye/WWDC19_brocadeOfLiNationality
